@@ -9,6 +9,7 @@ urlpatterns = [
     path("service",views.service, name="service"),
     path("contact",views.contact, name="contact"),
     path("login",views.login, name="login"),
+    path("sellVeg",views.sellVeg, name="sellVeg"),
     path('logout/', LogoutView.as_view()),
 
 ]

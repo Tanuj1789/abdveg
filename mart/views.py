@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.shortcuts import render,HttpResponse
-from mart.models import Contact
+from mart.models import Contact,SellVeg
 from datetime import datetime
 from django.contrib import messages
 import logging
@@ -37,4 +37,25 @@ def contact(request):
 
 def login(request):
     return render(request,'../templates/login.html')
+
+def sellVeg(request):
+    current_user = request.user
+
+    if current_user.id==None:
+        return render(request,'../templates/login.html')
+    else:
+        if request.method == "POST":
+            email= current_user.email
+            print(current_user.email)
+            name= request.POST.get('name')
+            price= request.POST.get('price')
+            addr= request.POST.get('addr')
+            addr1= request.POST.get('addr1')
+            city= request.POST.get('city')
+            state= request.POST.get('state')
+            zip= request.POST.get('zip')
+            sellveg= SellVeg(email=email,name=name,price=price,addr=addr,addr1=addr1,city=city,state=state,zip=zip)
+            sellveg.save()
+            messages.success(request, 'Your vegetables have been added!')
+        return render(request,'../templates/sellVeg.html')
 

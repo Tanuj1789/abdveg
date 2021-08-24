@@ -46,7 +46,7 @@ def sellVeg(request):
     else:
         if request.method == "POST":
             email= current_user.email
-            print(current_user.email)
+            # print(current_user.email)
             name= request.POST.get('name')
             price= request.POST.get('price')
             addr= request.POST.get('addr')

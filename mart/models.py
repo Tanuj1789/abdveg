@@ -3,9 +3,9 @@ from django.http import request
 
 # Create your models here.
 class Contact(models.Model):
-    fname= models.CharField(max_length=20)
-    lname= models.CharField(max_length=20)
-    email= models.CharField(max_length=20)
+    fname= models.CharField(max_length=50)
+    lname= models.CharField(max_length=50)
+    email= models.CharField(max_length=50)
     desc= models.TextField()
     date=models.DateField()
     def __str__(self):

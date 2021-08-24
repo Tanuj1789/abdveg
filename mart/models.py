@@ -13,13 +13,13 @@ class Contact(models.Model):
 
 
 class SellVeg(models.Model):
-    email = models.CharField(max_length=40)
-    name = models.CharField(max_length=40)
-    price = models.CharField(max_length=40)
-    addr= models.CharField(max_length=40)
-    addr1= models.CharField(max_length=40)
-    city= models.CharField(max_length=40)
-    state= models.CharField(max_length=40)
-    zip= models.CharField(max_length=40)
+    email = models.TextField()
+    name = models.TextField()
+    price = models.TextField()
+    addr= models.TextField()
+    addr1= models.TextField()
+    city= models.TextField()
+    state= models.TextField()
+    zip= models.TextField()
     def __str__(self):
         return self.name

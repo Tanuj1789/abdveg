@@ -72,3 +72,7 @@ def productView(request,pid):
     product = SellVeg.objects.get(id=pid)
     context = {'product': product}
     return render(request,'../templates/productView.html',context)
+
+def buyVeg(request):
+    products = SellVeg.objects.all()
+    return render(request,'../templates/buyVeg.html',{'products': products})

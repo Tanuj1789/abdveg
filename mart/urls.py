@@ -11,6 +11,7 @@ urlpatterns = [
     path("contact",views.contact, name="contact"),
     path("login",views.login, name="login"),
     path("sellVeg",views.sellVeg, name="sellVeg"),
+    path("buyVeg",views.buyVeg, name="buyVeg"),
     path('productView/<int:pid>',views.productView, name="productView"),
     path('logout/', LogoutView.as_view()),
 

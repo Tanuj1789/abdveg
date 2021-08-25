@@ -35,10 +35,10 @@
             Services
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/service">Buy Vegetables</a></li>
+            <li><a class="dropdown-item" href="/buyVeg">Buy Vegetables</a></li>
             <li><a class="dropdown-item" href="/sellVeg">Sell Vegetables</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/advancedBooking">Advance Booking</a></li>
+
           </ul>
         </li>
                 <li class="">
@@ -46,10 +46,17 @@
         </li>
       </ul>
       <div class="d-flex">
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Login</a>
-        </li>
+        {% if user.is_anonymous %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/login">Login</a>
+          </li>
+        {%else%}
+          <li class="nav-item">
+           <b><a class="nav-link active" aria-current="page" href="/login" style="color:8a898d;">{{user.username}}' s Profile</a></b>
+          </li>
+        {%endif%}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
         </li>

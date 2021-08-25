@@ -3,14 +3,15 @@ from django.shortcuts import render,HttpResponse
 from mart.models import Contact,SellVeg
 from datetime import datetime
 from django.contrib import messages
-import logging
+
 # Create your views here.
 def index(request):
     # context dictionary h
     context ={
         'variable': 'this is sent'
     }
-    return render(request,'../templates/index.html')
+    products = SellVeg.objects.all()
+    return render(request,'../templates/index.html',{'products': products})
 
 def about(request):
     context ={
@@ -36,7 +37,11 @@ def contact(request):
     return render(request,'../templates/contact.html')
 
 def login(request):
-    return render(request,'../templates/login.html')
+    current_user = request.user
+    sell = ""
+    if current_user.id!=None:
+        sell = SellVeg.objects.filter(email=request.user.email)
+    return render(request,'../templates/login.html',{'sellveggies': sell})
 
 def sellVeg(request):
     current_user = request.user
@@ -59,3 +64,11 @@ def sellVeg(request):
             messages.success(request, 'Your vegetables have been added!')
         return render(request,'../templates/sellVeg.html')
 
+def productView(request,pid):
+    context ={
+        'variable': 'this is sent'
+    }
+    print(pid)
+    product = SellVeg.objects.get(id=pid)
+    context = {'product': product}
+    return render(request,'../templates/productView.html',context)

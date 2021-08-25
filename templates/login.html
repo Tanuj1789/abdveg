@@ -9,15 +9,24 @@
 <h1> Profile </h1>
 {% if user.is_authenticated %}
   <p>Welcome, You are logged in as {{ user.username }}</p>
+  {% if sellveggies%}
+    <h4> Selling Vegetables </h4>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 my-0 mx-1">
+    {% for veggies in sellveggies %}
 
-<div class="card" style="width: 18rem;">
-  <img src="https://source.unsplash.com/1600x600/?vegetable/onion" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{user.email}}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+      <div class="card shadow-sm mx-1" style="width: 18rem;">
+      <img src="https://source.unsplash.com/1600x600/?vegetables/{{veggies.name}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{veggies.name}}</h5>
+        <p class="card-text">₹{{veggies.price}}</p>
+        <p class="card-text">{{veggies.id}}</p>
+
+        <a href="productView/{{veggies.id}}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+  {%endif%}
 
 {% else %}
   <a href="{% provider_login_url 'google' %}">Login With Google</a>
